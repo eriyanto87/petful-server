@@ -1,7 +1,6 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { CLIENT_ORIGIN } = require("../config");
+const { CLIENT_ORIGIN, PORT } = require("../config");
 
 const app = express();
 
@@ -16,6 +15,10 @@ app.use("/", require("../pets/pets.router"));
 
 app.get("/", (req, res) => {
   res.send("Hello from Petful!");
+});
+
+app.listen(PORT, () => {
+  console.log(`[petful-server] Listening on ${PORT}.`);
 });
 
 module.exports = app;
